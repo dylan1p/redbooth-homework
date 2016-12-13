@@ -6,7 +6,10 @@ import Main from './Main';
 function mapStateToProps(state){
   return{
     tasks: state.tasks,
-    tasklists: state.tasklists
+    tasklists: state.tasklists,
+    accessToken: state.accessToken,
+    userProfile: state.userProfile,
+    projects: state.projects
   };
 }
 

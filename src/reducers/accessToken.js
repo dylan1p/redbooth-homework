@@ -1,12 +1,13 @@
 import { handleAction } from 'redux-actions';
 
-let userProfile = handleAction('AUTHENTICATE_USER', {
+let accessToken = handleAction('AUTHENTICATE_USER', {
   next (state, action){
-    return action.payload.userProfile;
+    return action.payload.accessToken;
   },
   throw (state, action){
     return {error: true, message: 'something went wrong'};
   }
 }, {});
 
-export default userProfile;
+export default accessToken;
+

@@ -1,11 +1,12 @@
-function tasklists(state = [], action){
-  switch (action.type) {
-  case "GET_TASKLISTS":{
-    return action.payload;
-    break;
-  }
-  }
-  return state;
-}
+import { handleAction } from 'redux-actions';
 
-export default tasklists;
+let taskslists = handleAction('AUTHENTICATE_USER', {
+  next (state, action){
+    return action.payload.tasklists;
+  },
+  throw (state, action){
+    return {error: true, message: 'something went wrong'};
+  }
+}, {});
+
+export default taskslists;

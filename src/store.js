@@ -14,11 +14,17 @@ const initialState = {
     tasks: [],
     tasklists: [],
     userProfile: {},
-    token: {}
+    accessToken: {},
+    projects: []
 };
+
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const middleware = applyMiddleware(promiseMiddleware, logger());
 
-export const store = createStore(rootReducer, initialState, middleware);
+export const store = createStore(rootReducer, initialState, composeEnhancers(
+    middleware
+));
 
 export const history = syncHistoryWithStore(browserHistory, store);

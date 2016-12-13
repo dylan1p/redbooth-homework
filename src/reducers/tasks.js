@@ -1,13 +1,12 @@
-function tasks(state = [], action){
-  console.log(action);
-  switch (action.type) {
-  case "GET_TASKS":{
-    console.log('herererererekerekkr');
-    return action.payload;
-    break;
+import { handleAction } from 'redux-actions';
+
+let tasks = handleAction('AUTHENTICATE_USER', {
+  next (state, action){
+    return action.payload.tasks;
+  },
+  throw (state, action){
+    return {error: true, message: 'something went wrong'};
   }
-  }
-  return state;
-}
+}, {});
 
 export default tasks;

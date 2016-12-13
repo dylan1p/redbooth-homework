@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { store } from './store';
 
 const client_id = '611edd94df36508f05f5e4425a0e80224a3387d1cba08efa48d4689589ebf3e1';
 const client_secret = 'dc990596994c6a97bf72fd85816f1e375e7efb6d345d7ffb68a72a9f3c5f2cce';
@@ -29,18 +30,30 @@ let raw = Object.keys(data).map(key=>{
 }).join('&');
 
 export const authenticateUser = async () =>{
+
   const token = await axios.post(
     'oauth2/token',
-    raw,
-   { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
+    raw, {
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    }
   );
 
   const accessToken = token.data.access_token;
 
   const userProfile = await axios.get(`api/3/me?access_token=${accessToken}`);
 
-  return { userProfile : userProfile.data,
-           accessToken
-         };
+  const projects = await axios.get(`/api/3/projects?access_token=${accessToken}`);
+
+  const tasks = await axios.get(`/api/3/tasks?project_id=${projects.data[0].id}&access_token=${accessToken}`);
+
+  const taskLists = await axios.get(`/api/3/task_lists?project_id=${projects.data[0].id}&access_token=${accessToken}`);
+
+  return {
+    accessToken,
+    userProfile : userProfile.data,
+    projects: projects.data,
+    tasks : tasks.data,
+    tasklists: taskLists.data
+  };
 };
 
