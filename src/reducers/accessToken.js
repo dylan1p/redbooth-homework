@@ -5,7 +5,7 @@ let accessToken = handleAction('AUTHENTICATE_USER', {
     return action.payload.accessToken;
   },
   throw (state, action){
-    return {error: true, message: 'something went wrong'};
+    return {error: true, message: action.payload };
   }
 }, {});
 

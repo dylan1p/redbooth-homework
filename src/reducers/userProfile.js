@@ -5,7 +5,7 @@ let userProfile = handleAction('AUTHENTICATE_USER', {
     return action.payload.userProfile;
   },
   throw (state, action){
-    return {error: true, message: 'something went wrong'};
+    return {error: true,  message: action.payload };
   }
 }, {});
 

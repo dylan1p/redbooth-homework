@@ -1,26 +1,25 @@
-import React from 'react';
+import React, { Component }from 'react';
 import TaskLane from './TaskLane';
+import Task from './Task';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
-const TaskBoard = React.createClass({
-  renderTaskLane(tasklist, i){
-    return (
-      <TaskLane status={tasklist.name} key={i}>
-        {
-          this.props.tasks.map((task, i)=>{
-            if(tasklist.id === task.task_list_id)
-              return (<div key={i}> {task.name} </div>);
-          })
-        }
-      </TaskLane>
-    );
-  },
-  render(){
-    return(
-      <div className="kanban-taskboard">
-        {this.props.tasklists.reverse().map(this.renderTaskLane)}
-      </div>
-    );
-  }
-});
+class TaskBoard extends Component {
+    render(){
+        return(
+            <div className="kanban-taskboard">
+            {
+                this.props.tasklists.map((tasklist, i)=>{
+                    return(
+                        <TaskLane id={tasklist.id}
+                        status={tasklist.name}
+                        key={i}
+                        {...this.props}></TaskLane>)
+                })
+            }
+            </div>
+        );
+    }
+}
 
-export default TaskBoard;
+export default DragDropContext(HTML5Backend)(TaskBoard);
