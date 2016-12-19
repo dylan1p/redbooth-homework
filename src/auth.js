@@ -54,6 +54,7 @@ export const authenticateUser = async () =>{
   return {
     accessToken,
     userProfile : userProfile.data,
+    projects: projects.data,
     project: projects.data[0],
     tasks : tasks.data,
     tasklists: taskLists.data.reverse()

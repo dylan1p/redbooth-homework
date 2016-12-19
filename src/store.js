@@ -15,7 +15,8 @@ const initialState = {
     tasklists: [],
     userProfile: {},
     accessToken: {},
-    projects: []
+    projects: [],
+    project: {}
 };
 
 
