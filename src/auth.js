@@ -7,12 +7,14 @@ const redirect_uri = 'http://localhost:9000';
 const code = getParameterByName('code');
 const grant_type = 'authorization_code';
 
+let accessToken = localStorage.getItem("accessToken");
+
 function getParameterByName(name) {
     var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
     return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
 }
 
-if(!code)
+if(!accessToken && !code)
   window.location.href =`https://redbooth.com/oauth2/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code`;
 
 let data = {
@@ -25,20 +27,21 @@ let data = {
 
 
 let raw = Object.keys(data).map(key=>{
-  // todo encode value as url
   return `${key}=${encodeURIComponent(data[key])}`;
 }).join('&');
 
 export const authenticateUser = async () =>{
+  if(!accessToken){
+    const token = await axios.post(
+      'oauth2/token',
+      raw, {
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+      }
+    );
 
-  const token = await axios.post(
-    'oauth2/token',
-    raw, {
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-    }
-  );
-
-  const accessToken = token.data.access_token;
+    accessToken = token.data.access_token;
+    localStorage.setItem("accessToken", accessToken);
+  }
 
   const userProfile = await axios.get(`api/3/me?access_token=${accessToken}`);
 
@@ -51,9 +54,9 @@ export const authenticateUser = async () =>{
   return {
     accessToken,
     userProfile : userProfile.data,
-    projects: projects.data,
+    project: projects.data[0],
     tasks : tasks.data,
-    tasklists: taskLists.data
+    tasklists: taskLists.data.reverse()
   };
 };
 
