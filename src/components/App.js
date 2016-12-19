@@ -9,7 +9,8 @@ function mapStateToProps(state){
     tasklists: state.tasklists,
     accessToken: state.accessToken,
     userProfile: state.userProfile,
-    projects: state.projects
+    projects: state.projects,
+    project: state.project
   };
 }
 
