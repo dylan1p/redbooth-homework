@@ -1,7 +1,6 @@
 import React, { Component }from 'react';
 import { Link } from 'react-router';
 
-//React.clone element passes data down to first child element
 class Main extends React.Component{
   constructor(props) {
     super(props);
