@@ -8,7 +8,10 @@ const reducer = handleActions({
       if(task.id === action.payload.id) return action.payload;
       else return task;
     });
-  }
+  },
+  'CREATE_TASK': (state, action)=> (
+    [action.payload, ...state]
+  )
 }, {});
 
 

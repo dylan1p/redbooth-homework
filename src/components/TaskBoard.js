@@ -6,18 +6,19 @@ import HTML5Backend from 'react-dnd-html5-backend';
 
 class TaskBoard extends Component {
     render(){
-        return(
-            <div className="kanban-taskboard">
-            {
-                this.props.tasklists.map((tasklist, i)=>{
-                    return(
-                        <TaskLane id={tasklist.id}
-                        status={tasklist.name}
-                        key={i}
-                        {...this.props}></TaskLane>)
-                })
-            }
-            </div>
+      return(
+        <div className="kanban-taskboard">
+        {
+          this.props.tasklists.map((tasklist, i)=>{
+            return(
+                <TaskLane id={tasklist.id}
+              status={tasklist.name}
+              key={i}
+              {...this.props}/>
+            )
+          })
+        }
+      </div>
         );
     }
 }

@@ -24,17 +24,13 @@ class Task extends React.Component{
     return connectDragSource(
         <div className="kanban-task" style={{
           opacity: isDragging ? 0.5 : 1,
+          cursor: 'move'
         }}>
-        {this.props.name}
+        <h2>{this.props.name}</h2>
       </div>
     );
   }
 }
-
-Task.propTypes = {
-  connectDragSource: PropTypes.func.isRequired,
-  isDragging: PropTypes.bool.isRequired
-};
 
 export default DragSource('task', taskSource, collect)(Task);
 

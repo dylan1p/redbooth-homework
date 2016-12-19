@@ -1,6 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { DropTarget } from 'react-dnd';
 import Task from './Task';
+import NewTask from './NewTask';
 
 const taskTarget = {
     drop(props, monitor) {
@@ -22,10 +23,12 @@ class TaskLane extends React.Component{
     render() {
         const { connectDropTarget, isOver } = this.props;
         const status = this.props.status;
+
         return connectDropTarget(
             <div className="kanban-lane">
             <h1> { this.props.status } </h1>
             <div className="kanban-lane-items">
+            <NewTask id={ this.props.id } {...this.props}/>
             {
                 this.props.tasks.map((task, i)=>{
                     if(this.props.id === task.task_list_id)

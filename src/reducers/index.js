@@ -5,6 +5,7 @@ import tasks from './tasks';
 import tasklists from './tasklists';
 import userProfile from './userProfile';
 import projects from './projects';
+import project from './project';
 import accessToken from './accessToken';
 
 const rootReducer = combineReducers({
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   tasklists,
   routing: routerReducer,
   userProfile,
-  projects
+  projects,
+  project
 });
 
 export default rootReducer;
