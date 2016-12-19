@@ -36,7 +36,11 @@
     "axios": "^0.15.3",
     "babel-runtime": "^6.18.0",
     "react": "^15.4.1",
+    "react-addons-update": "^15.4.1",
+    "react-dnd": "^2.1.4",
+    "react-dnd-html5-backend": "^2.1.2",
     "react-dom": "^15.4.1",
+    "react-edit-inline": "^1.0.8",
     "redux-actions": "^1.1.0",
     "redux-promise": "^0.5.3",
     "virtual-dom": "^2.1.1"

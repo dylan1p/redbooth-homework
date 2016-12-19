@@ -7,19 +7,30 @@
     height: 40px;
     text-align: center;
   }
+  .kanban-lane{
+    margin: 10px;
+    flex: 1;
+    .kanban-lane-items{
+      padding: 20px;
+      border-radius:5px;
+      box-shadow: 0px 0px 5px black;
+      min-height: 100px
+    }
+    .kanban-task{
+      min-height: 100px;
+      border-radius: 5px;
+      background-color: lightgray;
+      border-left: 10px solid green;
+      padding: 10px;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+  }
   .kanban-taskboard{
     padding-top: 20px;
     width: 100%;
     height: 100%;
     display: flex;
-  }
-  .kanban-lane{
-    flex: 1;
-    text-align: center;
-  }
-  .kanban-task{
-    height: 100px;
-    border-radius: 5px;
-    background-color: light-gray;
   }
 }
